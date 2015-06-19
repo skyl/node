@@ -26,9 +26,9 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 var o = {};
-Object.defineProperty(o, "length", { get: function() { throw "bail"; }});
+Object.defineProperty(o, "length", { get: function() { throw new Error("bail"); }});
 assertThrows("new Int16Array(o);");
 
 var a = [];
-Object.defineProperty(a, "0", { get: function() { throw "bail"; }});
+Object.defineProperty(a, "0", { get: function() { throw new Error("bail"); }});
 assertThrows("new Int16Array(a);");
