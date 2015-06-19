@@ -221,7 +221,7 @@ function TestWithGetCallThrow2(create, handler) {
   }
 }
 
-function onproxythrow() { throw "myexn" }
+function onproxythrow() { throw new Error("myexn") }
 
 TestWithGetCallThrow({
   get: function(r, k) { key = k; return k === "a" ? onproxythrow : undefined },
@@ -421,26 +421,26 @@ function TestWithSetThrow2(create, handler, hasSetter) {
 }
 
 TestWithSetThrow({
-  set: function(r, k, v) { throw "myexn" },
+  set: function(r, k, v) { throw new Error("myexn") },
   getPropertyDescriptor: function(k) {
     return k === "a" ? {writable: true, configurable: true} : undefined
   }
 })
 
 TestWithSetThrow({
-  getPropertyDescriptor: function(k) { throw "myexn" },
+  getPropertyDescriptor: function(k) { throw new Error("myexn") },
 })
 
 TestWithSetThrow({
   getPropertyDescriptor: function(k) {
     return k === "a" ? {writable: true, configurable: true} : undefined
   },
-  defineProperty: function(k, desc) { throw "myexn" }
+  defineProperty: function(k, desc) { throw new Error("myexn") }
 })
 
 TestWithSetThrow({
   getPropertyDescriptor: function(k) {
     return k === "a" ?
-        {set: function() { throw "myexn" }, configurable: true} : undefined
+        {set: function() { throw new Error("myexn") }, configurable: true} : undefined
   }
 }, true)
