@@ -24,7 +24,7 @@
 description('This test verifies the result returned by the eval function when exceptions are thrown and caught whithin the contents of the evaluated string.');
 
 function throwFunc() {
-  throw "";
+  throw new Error("");
 }
 
 function throwOnReturn(){
