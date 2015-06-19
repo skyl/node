@@ -99,25 +99,25 @@ function TestGetOwnPropertyThrow2(create, handler) {
 }
 
 TestGetOwnPropertyThrow({
-  getOwnPropertyDescriptor: function(k) { throw "myexn" }
+  getOwnPropertyDescriptor: function(k) { throw new Error("myexn") }
 })
 
 TestGetOwnPropertyThrow({
   getOwnPropertyDescriptor: function(k) {
     return this.getPropertyDescriptor2(k)
   },
-  getOwnPropertyDescriptor2: function(k) { throw "myexn" }
+  getOwnPropertyDescriptor2: function(k) { throw new Error("myexn") }
 })
 
 TestGetOwnPropertyThrow({
   getOwnPropertyDescriptor: function(k) {
-    return {get value() { throw "myexn" }}
+    return {get value() { throw new Error("myexn") }}
   }
 })
 
 TestGetOwnPropertyThrow(Proxy.create({
   get: function(pr, pk) {
-    return function(k) { throw "myexn" }
+    return function(k) { throw new Error("myexn") }
   }
 }))
 
@@ -315,41 +315,41 @@ function TestGetThrow2(create, handler) {
 }
 
 TestGetThrow({
-  get: function(r, k) { throw "myexn" }
+  get: function(r, k) { throw new Error("myexn") }
 })
 
 TestGetThrow({
   get: function(r, k) { return this.get2(r, k) },
-  get2: function(r, k) { throw "myexn" }
+  get2: function(r, k) { throw new Error("myexn") }
 })
 
 TestGetThrow({
-  getPropertyDescriptor: function(k) { throw "myexn" }
+  getPropertyDescriptor: function(k) { throw new Error("myexn") }
 })
 
 TestGetThrow({
   getPropertyDescriptor: function(k) { return this.getPropertyDescriptor2(k) },
-  getPropertyDescriptor2: function(k) { throw "myexn" }
+  getPropertyDescriptor2: function(k) { throw new Error("myexn") }
 })
 
 TestGetThrow({
   getPropertyDescriptor: function(k) {
-    return {get value() { throw "myexn" }}
+    return {get value() { throw new Error("myexn") }}
   }
 })
 
 TestGetThrow({
   get: undefined,
-  getPropertyDescriptor: function(k) { throw "myexn" }
+  getPropertyDescriptor: function(k) { throw new Error("myexn") }
 })
 
 TestGetThrow(Proxy.create({
-  get: function(pr, pk) { throw "myexn" }
+  get: function(pr, pk) { throw new Error("myexn") }
 }))
 
 TestGetThrow(Proxy.create({
   get: function(pr, pk) {
-    return function(r, k) { throw "myexn" }
+    return function(r, k) { throw new Error("myexn") }
   }
 }))
 
@@ -468,29 +468,29 @@ function TestSetThrow2(create, handler) {
 }
 
 TestSetThrow({
-  set: function(r, k, v) { throw "myexn" }
+  set: function(r, k, v) { throw new Error("myexn") }
 })
 
 TestSetThrow({
   set: function(r, k, v) { return this.set2(r, k, v) },
-  set2: function(r, k, v) { throw "myexn" }
+  set2: function(r, k, v) { throw new Error("myexn") }
 })
 
 TestSetThrow({
-  getOwnPropertyDescriptor: function(k) { throw "myexn" },
+  getOwnPropertyDescriptor: function(k) { throw new Error("myexn") },
   defineProperty: function(k, desc) { key = k; val = desc.value }
 })
 
 TestSetThrow({
   getOwnPropertyDescriptor: function(k) { return {writable: true} },
-  defineProperty: function(k, desc) { throw "myexn" }
+  defineProperty: function(k, desc) { throw new Error("myexn") }
 })
 
 TestSetThrow({
   getOwnPropertyDescriptor: function(k) {
     return this.getOwnPropertyDescriptor2(k)
   },
-  getOwnPropertyDescriptor2: function(k) { throw "myexn" },
+  getOwnPropertyDescriptor2: function(k) { throw new Error("myexn") },
   defineProperty: function(k, desc) { this.defineProperty2(k, desc) },
   defineProperty2: function(k, desc) { key = k; val = desc.value }
 })
@@ -501,11 +501,11 @@ TestSetThrow({
   },
   getOwnPropertyDescriptor2: function(k) { return {writable: true} },
   defineProperty: function(k, desc) { this.defineProperty2(k, desc) },
-  defineProperty2: function(k, desc) { throw "myexn" }
+  defineProperty2: function(k, desc) { throw new Error("myexn") }
 })
 
 TestSetThrow({
-  getOwnPropertyDescriptor: function(k) { throw "myexn" },
+  getOwnPropertyDescriptor: function(k) { throw new Error("myexn") },
   defineProperty: function(k, desc) { key = k; val = desc.value }
 })
 
@@ -513,41 +513,41 @@ TestSetThrow({
   getOwnPropertyDescriptor: function(k) {
     return {get writable() { return true }}
   },
-  defineProperty: function(k, desc) { throw "myexn" }
+  defineProperty: function(k, desc) { throw new Error("myexn") }
 })
 
 TestSetThrow({
-  getOwnPropertyDescriptor: function(k) { throw "myexn" }
+  getOwnPropertyDescriptor: function(k) { throw new Error("myexn") }
 })
 
 TestSetThrow({
   getOwnPropertyDescriptor: function(k) {
-    return {set: function(v) { throw "myexn" }}
+    return {set: function(v) { throw new Error("myexn") }}
   }
 })
 
 TestSetThrow({
-  getOwnPropertyDescriptor: function(k) { throw "myexn" },
+  getOwnPropertyDescriptor: function(k) { throw new Error("myexn") },
   getPropertyDescriptor: function(k) { return {writable: true} },
   defineProperty: function(k, desc) { key = k; val = desc.value }
 })
 
 TestSetThrow({
   getOwnPropertyDescriptor: function(k) { return null },
-  getPropertyDescriptor: function(k) { throw "myexn" },
+  getPropertyDescriptor: function(k) { throw new Error("myexn") },
   defineProperty: function(k, desc) { key = k; val = desc.value }
 })
 
 TestSetThrow({
   getOwnPropertyDescriptor: function(k) { return null },
   getPropertyDescriptor: function(k) { return {writable: true} },
-  defineProperty: function(k, desc) { throw "myexn" }
+  defineProperty: function(k, desc) { throw new Error("myexn") }
 })
 
 TestSetThrow({
   getOwnPropertyDescriptor: function(k) { return null },
   getPropertyDescriptor: function(k) {
-    return {get writable() { throw "myexn" }}
+    return {get writable() { throw new Error("myexn") }}
   },
   defineProperty: function(k, desc) { key = k; val = desc.value }
 })
@@ -555,23 +555,23 @@ TestSetThrow({
 TestSetThrow({
   getOwnPropertyDescriptor: function(k) { return null },
   getPropertyDescriptor: function(k) {
-    return {set: function(v) { throw "myexn" }}
+    return {set: function(v) { throw new Error("myexn") }}
   }
 })
 
 TestSetThrow({
   getOwnPropertyDescriptor: function(k) { return null },
   getPropertyDescriptor: function(k) { return null },
-  defineProperty: function(k, desc) { throw "myexn" }
+  defineProperty: function(k, desc) { throw new Error("myexn") }
 })
 
 TestSetThrow(Proxy.create({
-  get: function(pr, pk) { throw "myexn" }
+  get: function(pr, pk) { throw new Error("myexn") }
 }))
 
 TestSetThrow(Proxy.create({
   get: function(pr, pk) {
-    return function(r, k, v) { throw "myexn" }
+    return function(r, k, v) { throw new Error("myexn") }
   }
 }))
 
@@ -671,8 +671,8 @@ TestSetForDerived(
         configurable: true
       }
       case "p_nonconf": return {}
-      case "p_throw": throw "myexn"
-      case "p_setterthrow": return {set: function(x) { throw "myexn" }}
+      case "p_throw": throw new Error("myexn")
+      case "p_setterthrow": return {set: function(x) { throw new Error("myexn") }}
       default: return undefined
     }
   }
@@ -799,7 +799,7 @@ function TestDefine2(create, handler) {
   assertEquals(true, desc.configurable)
   assertEquals(undefined, desc.mine)  // Arguably a bug in the spec...
 
-  var props = {bla: {get value() { throw "myexn" }}}
+  var props = {bla: {get value() { throw new Error("myexn") }}}
   assertThrows(function(){ Object.defineProperties(p, props) }, "myexn")
 }
 
@@ -829,36 +829,36 @@ function TestDefineThrow2(create, handler) {
   assertThrows(function(){ Object.defineProperty(p, 0, {value: 44})}, "myexn")
 
   var d1 = create({
-    get: function(r, k) { throw "myexn" },
+    get: function(r, k) { throw new Error("myexn") },
     getOwnPropertyNames: function() { return ["value"] }
   })
   assertThrows(function(){ Object.defineProperty(p, "p", d1) }, "myexn")
   var d2 = create({
     get: function(r, k) { return 77 },
-    getOwnPropertyNames: function() { throw "myexn" }
+    getOwnPropertyNames: function() { throw new Error("myexn") }
   })
   assertThrows(function(){ Object.defineProperty(p, "p", d2) }, "myexn")
 
-  var props = {bla: {get value() { throw "otherexn" }}}
+  var props = {bla: {get value() { throw new Error("otherexn") }}}
   assertThrows(function(){ Object.defineProperties(p, props) }, "otherexn")
 }
 
 TestDefineThrow({
-  defineProperty: function(k, d) { throw "myexn" }
+  defineProperty: function(k, d) { throw new Error("myexn") }
 })
 
 TestDefineThrow({
   defineProperty: function(k, d) { return this.defineProperty2(k, d) },
-  defineProperty2: function(k, d) { throw "myexn" }
+  defineProperty2: function(k, d) { throw new Error("myexn") }
 })
 
 TestDefineThrow(Proxy.create({
-  get: function(pr, pk) { throw "myexn" }
+  get: function(pr, pk) { throw new Error("myexn") }
 }))
 
 TestDefineThrow(Proxy.create({
   get: function(pr, pk) {
-    return function(k, d) { throw "myexn" }
+    return function(k, d) { throw new Error("myexn") }
   }
 }))
 
@@ -937,21 +937,21 @@ function TestDeleteThrow2(create, handler) {
 }
 
 TestDeleteThrow({
-  delete: function(k) { throw "myexn" }
+  delete: function(k) { throw new Error("myexn") }
 })
 
 TestDeleteThrow({
   delete: function(k) { return this.delete2(k) },
-  delete2: function(k) { throw "myexn" }
+  delete2: function(k) { throw new Error("myexn") }
 })
 
 TestDeleteThrow(Proxy.create({
-  get: function(pr, pk) { throw "myexn" }
+  get: function(pr, pk) { throw new Error("myexn") }
 }))
 
 TestDeleteThrow(Proxy.create({
   get: function(pr, pk) {
-    return function(k) { throw "myexn" }
+    return function(k) { throw new Error("myexn") }
   }
 }))
 
@@ -1008,14 +1008,14 @@ function TestDescriptorThrow2(create, handler) {
 }
 
 TestDescriptorThrow({
-  getOwnPropertyDescriptor: function(k) { throw "myexn" }
+  getOwnPropertyDescriptor: function(k) { throw new Error("myexn") }
 })
 
 TestDescriptorThrow({
   getOwnPropertyDescriptor: function(k) {
     return this.getOwnPropertyDescriptor2(k)
   },
-  getOwnPropertyDescriptor2: function(k) { throw "myexn" }
+  getOwnPropertyDescriptor2: function(k) { throw new Error("myexn") }
 })
 
 
@@ -1165,35 +1165,35 @@ function TestInThrow2(create, handler) {
 }
 
 TestInThrow({
-  has: function(k) { throw "myexn" }
+  has: function(k) { throw new Error("myexn") }
 })
 
 TestInThrow({
   has: function(k) { return this.has2(k) },
-  has2: function(k) { throw "myexn" }
+  has2: function(k) { throw new Error("myexn") }
 })
 
 TestInThrow({
-  getPropertyDescriptor: function(k) { throw "myexn" }
+  getPropertyDescriptor: function(k) { throw new Error("myexn") }
 })
 
 TestInThrow({
   getPropertyDescriptor: function(k) { return this.getPropertyDescriptor2(k) },
-  getPropertyDescriptor2: function(k) { throw "myexn" }
+  getPropertyDescriptor2: function(k) { throw new Error("myexn") }
 })
 
 TestInThrow({
   has: undefined,
-  getPropertyDescriptor: function(k) { throw "myexn" }
+  getPropertyDescriptor: function(k) { throw new Error("myexn") }
 })
 
 TestInThrow(Proxy.create({
-  get: function(pr, pk) { throw "myexn" }
+  get: function(pr, pk) { throw new Error("myexn") }
 }))
 
 TestInThrow(Proxy.create({
   get: function(pr, pk) {
-    return function(k) { throw "myexn" }
+    return function(k) { throw new Error("myexn") }
   }
 }))
 
@@ -1426,37 +1426,37 @@ function TestHasOwnThrow2(create, handler) {
 }
 
 TestHasOwnThrow({
-  hasOwn: function(k) { throw "myexn" }
+  hasOwn: function(k) { throw new Error("myexn") }
 })
 
 TestHasOwnThrow({
   hasOwn: function(k) { return this.hasOwn2(k) },
-  hasOwn2: function(k) { throw "myexn" }
+  hasOwn2: function(k) { throw new Error("myexn") }
 })
 
 TestHasOwnThrow({
-  getOwnPropertyDescriptor: function(k) { throw "myexn" }
+  getOwnPropertyDescriptor: function(k) { throw new Error("myexn") }
 })
 
 TestHasOwnThrow({
   getOwnPropertyDescriptor: function(k) {
     return this.getOwnPropertyDescriptor2(k)
   },
-  getOwnPropertyDescriptor2: function(k) { throw "myexn" }
+  getOwnPropertyDescriptor2: function(k) { throw new Error("myexn") }
 })
 
 TestHasOwnThrow({
   hasOwn: undefined,
-  getOwnPropertyDescriptor: function(k) { throw "myexn" }
+  getOwnPropertyDescriptor: function(k) { throw new Error("myexn") }
 })
 
 TestHasOwnThrow(Proxy.create({
-  get: function(pr, pk) { throw "myexn" }
+  get: function(pr, pk) { throw new Error("myexn") }
 }))
 
 TestHasOwnThrow(Proxy.create({
   get: function(pr, pk) {
-    return function(k) { throw "myexn" }
+    return function(k) { throw new Error("myexn") }
   }
 }))
 
@@ -1683,12 +1683,12 @@ function TestPropertyNamesThrow2(create, handler) {
 }
 
 TestPropertyNamesThrow({
-  getOwnPropertyNames: function() { throw "myexn" }
+  getOwnPropertyNames: function() { throw new Error("myexn") }
 })
 
 TestPropertyNamesThrow({
   getOwnPropertyNames: function() { return this.getOwnPropertyNames2() },
-  getOwnPropertyNames2: function() { throw "myexn" }
+  getOwnPropertyNames2: function() { throw new Error("myexn") }
 })
 
 
@@ -1765,27 +1765,27 @@ function TestKeysThrow2(create, handler) {
 }
 
 TestKeysThrow({
-  keys: function() { throw "myexn" }
+  keys: function() { throw new Error("myexn") }
 })
 
 TestKeysThrow({
   keys: function() { return this.keys2() },
-  keys2: function() { throw "myexn" }
+  keys2: function() { throw new Error("myexn") }
 })
 
 TestKeysThrow({
-  getOwnPropertyNames: function() { throw "myexn" },
+  getOwnPropertyNames: function() { throw new Error("myexn") },
   getOwnPropertyDescriptor: function(k) { return true }
 })
 
 TestKeysThrow({
   getOwnPropertyNames: function() { return [1, 2] },
-  getOwnPropertyDescriptor: function(k) { throw "myexn" }
+  getOwnPropertyDescriptor: function(k) { throw new Error("myexn") }
 })
 
 TestKeysThrow({
   getOwnPropertyNames: function() { return this.getOwnPropertyNames2() },
-  getOwnPropertyNames2: function() { throw "myexn" },
+  getOwnPropertyNames2: function() { throw new Error("myexn") },
 })
 
 TestKeysThrow({
@@ -1794,16 +1794,16 @@ TestKeysThrow({
   getOwnPropertyDescriptor: function(k) {
     return this.getOwnPropertyDescriptor2(k)
   },
-  getOwnPropertyDescriptor2: function(k) { throw "myexn" }
+  getOwnPropertyDescriptor2: function(k) { throw new Error("myexn") }
 })
 
 TestKeysThrow({
-  get getOwnPropertyNames() { throw "myexn" }
+  get getOwnPropertyNames() { throw new Error("myexn") }
 })
 
 TestKeysThrow({
   get getOwnPropertyNames() {
-    return function() { throw "myexn" }
+    return function() { throw new Error("myexn") }
   },
 })
 
@@ -1811,7 +1811,7 @@ TestKeysThrow({
   get getOwnPropertyNames() {
     return function() { return [1, 2] }
   },
-  getOwnPropertyDescriptor: function(k) { throw "myexn" }
+  getOwnPropertyDescriptor: function(k) { throw new Error("myexn") }
 })
 
 
@@ -1944,21 +1944,21 @@ function TestFixThrow2(create, handler) {
 }
 
 TestFixThrow({
-  fix: function() { throw "myexn" }
+  fix: function() { throw new Error("myexn") }
 })
 
 TestFixThrow({
   fix: function() { return this.fix2() },
-  fix2: function() { throw "myexn" }
+  fix2: function() { throw new Error("myexn") }
 })
 
 TestFixThrow({
-  get fix() { throw "myexn" }
+  get fix() { throw new Error("myexn") }
 })
 
 TestFixThrow({
   get fix() {
-    return function() { throw "myexn" }
+    return function() { throw new Error("myexn") }
   }
 })
 
@@ -2154,25 +2154,25 @@ function TestToStringThrow(handler) {
 }
 
 TestToStringThrow({
-  get: function(r, k) { throw "myexn" }
+  get: function(r, k) { throw new Error("myexn") }
 })
 
 TestToStringThrow({
-  get: function(r, k) { return function() { throw "myexn" } }
+  get: function(r, k) { return function() { throw new Error("myexn") } }
 })
 
 TestToStringThrow({
   get: function(r, k) { return this.get2(r, k) },
-  get2: function(r, k) { throw "myexn" }
+  get2: function(r, k) { throw new Error("myexn") }
 })
 
 TestToStringThrow(Proxy.create({
-  get: function(pr, pk) { throw "myexn" }
+  get: function(pr, pk) { throw new Error("myexn") }
 }))
 
 TestToStringThrow(Proxy.create({
   get: function(pr, pk) {
-    return function(r, k) { throw "myexn" }
+    return function(r, k) { throw new Error("myexn") }
   }
 }))
 
@@ -2259,29 +2259,29 @@ function TestIsEnumerableThrow2(create, handler) {
 }
 
 TestIsEnumerableThrow({
-  getOwnPropertyDescriptor: function(k) { throw "myexn" }
+  getOwnPropertyDescriptor: function(k) { throw new Error("myexn") }
 })
 
 TestIsEnumerableThrow({
   getOwnPropertyDescriptor: function(k) {
     return this.getOwnPropertyDescriptor2(k)
   },
-  getOwnPropertyDescriptor2: function(k) { throw "myexn" }
+  getOwnPropertyDescriptor2: function(k) { throw new Error("myexn") }
 })
 
 TestIsEnumerableThrow({
   getOwnPropertyDescriptor: function(k) {
-    return {get enumerable() { throw "myexn" }, configurable: true}
+    return {get enumerable() { throw new Error("myexn") }, configurable: true}
   },
 })
 
 TestIsEnumerableThrow(Proxy.create({
-  get: function(pr, pk) { throw "myexn" }
+  get: function(pr, pk) { throw new Error("myexn") }
 }))
 
 TestIsEnumerableThrow(Proxy.create({
   get: function(pr, pk) {
-    return function(k) { throw "myexn" }
+    return function(k) { throw new Error("myexn") }
   }
 }))
 
