@@ -96,7 +96,7 @@ function nth(iterable, n) {
   for (let x of iterable) {
     if (n-- == 0) return x;
   }
-  throw "unreachable";
+  throw new Error("unreachable");
 }
 
 function* skip_every(iterable, n) {
@@ -124,15 +124,15 @@ function nested_fold(cons, seed, iterable) {
 
 function* unreachable(iterable) {
   for (let x of iterable) {
-    throw "not reached";
+    throw new Error("not reached");
   }
 }
 
 function one_time_getter(o, prop, val) {
-  function set_never() { throw "unreachable"; }
+  function set_never() { throw new Error("unreachable"); }
   var gotten = false;
   function get_once() {
-    if (gotten) throw "got twice";
+    if (gotten) throw new Error("got twice");
     gotten = true;
     return val;
   }
@@ -141,7 +141,7 @@ function one_time_getter(o, prop, val) {
 }
 
 function never_getter(o, prop) {
-  function never() { throw "unreachable"; }
+  function never() { throw new Error("unreachable"); }
   Object.defineProperty(o, prop, {get: never, set: never})
   return o;
 }
@@ -162,7 +162,7 @@ function poison_next_after(iterable, n) {
   }
   function next_getter() {
     if (n-- < 0)
-      throw "poisoned";
+      throw new Error("poisoned");
     return next;
   }
   var o = {};
@@ -269,15 +269,15 @@ function catch_control(iterable, k) {
 }
 assertEquals(false,
              catch_control(integers_until(10),
-                           function() { throw "break" }));
+                           function() { throw new Error("break") }));
 assertEquals(false,
              catch_control(integers_until(10),
-                           function() { throw "continue" }));
+                           function() { throw new Error("continue") }));
 assertEquals(5,
              catch_control(integers_until(10),
                            function(x) {
                              if (x == 5) return x;
-                             throw "continue";
+                             throw new Error("continue");
                            }));
 
 // Test continue/break in try.
@@ -324,7 +324,7 @@ function poison_proxy_after(iterable, n) {
   var iterator = iterable[Symbol.iterator]();
   return wrap_iterator(Proxy.create({
     get: function(receiver, name) {
-      if (name == 'next' && n-- < 0) throw "unreachable";
+      if (name == 'next' && n-- < 0) throw new Error("unreachable");
       return iterator[name];
     },
     // Needed for integers_until(10)'s this.n++.
