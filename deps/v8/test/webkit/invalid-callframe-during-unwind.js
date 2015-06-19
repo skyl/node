@@ -23,6 +23,6 @@
 
 description("Test to ensure we have a valid callframe midway through unwinding");
 
-function testUnwind(){with({}){ arguments; throw "threw successfully";}}
+function testUnwind(){with({}){ arguments; throw new Error("threw successfully");}}
 
 shouldThrow("testUnwind()")
