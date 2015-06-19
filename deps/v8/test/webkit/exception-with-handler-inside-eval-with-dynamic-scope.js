@@ -26,30 +26,30 @@ var result;
 function runTest() {
     var test = "outer scope";
     with({test:"inner scope"}) {
-        eval("try { throw ''; } catch (e) { result = test; shouldBe('result', '\"inner scope\"'); }");
+        eval("try { throw new Error(''; } catch (e) { result = test; shouldBe('result', '\"inner scope\"'); }"));
         result = null;
-        eval("try { with({test:'innermost scope'}) throw ''; } catch (e) { result = test; shouldBe('result', '\"inner scope\"'); }");
+        eval("try { with({test:'innermost scope'}) throw new Error(''; } catch (e) { result = test; shouldBe('result', '\"inner scope\"'); }"));
         result = null;
-        eval("with ({test:'innermost scope'}) try { throw ''; } catch (e) { result = test; shouldBe('result', '\"innermost scope\"'); }");
+        eval("with ({test:'innermost scope'}) try { throw new Error(''; } catch (e) { result = test; shouldBe('result', '\"innermost scope\"'); }"));
         result = null;
-        with ({test:'innermost scope'}) eval("try { throw ''; } catch (e) { result = test; shouldBe('result', '\"innermost scope\"'); }");
+        with ({test:'innermost scope'}) eval("try { throw new Error(''; } catch (e) { result = test; shouldBe('result', '\"innermost scope\"'); }"));
         result = null;
         try {
-            eval("try { throw ''; } finally { result = test; shouldBe('result', '\"inner scope\"'); result = null; undeclared; }");
+            eval("try { throw new Error(''; } finally { result = test; shouldBe('result', '\"inner scope\"'); result = null; undeclared; }"));
         } catch(e) {
             result = test;
             shouldBe('result', '"inner scope"');
             result = null;
-            eval("try { with({test:'innermost scope'}) throw ''; } catch (e) { result = test; shouldBe('result', '\"inner scope\"'); }");
+            eval("try { with({test:'innermost scope'}) throw new Error(''; } catch (e) { result = test; shouldBe('result', '\"inner scope\"'); }"));
             result = null;
-            eval("with ({test:'innermost scope'}) try { throw ''; } catch (e) { result = test; shouldBe('result', '\"innermost scope\"'); }");
+            eval("with ({test:'innermost scope'}) try { throw new Error(''; } catch (e) { result = test; shouldBe('result', '\"innermost scope\"'); }"));
             result = null;
-            with ({test:'innermost scope'}) eval("try { throw ''; } catch (e) { result = test; shouldBe('result', '\"innermost scope\"'); }");
+            with ({test:'innermost scope'}) eval("try { throw new Error(''; } catch (e) { result = test; shouldBe('result', '\"innermost scope\"'); }"));
         }
     }
     result = test;
-    eval("try { throw ''; } catch (e) { result = test; shouldBe('result', '\"outer scope\"'); }");
+    eval("try { throw new Error(''; } catch (e) { result = test; shouldBe('result', '\"outer scope\"'); }"));
     eval("result = test");
-    eval("try { throw ''; } catch (e) { result = test; shouldBe('result', '\"outer scope\"'); }");
+    eval("try { throw new Error(''; } catch (e) { result = test; shouldBe('result', '\"outer scope\"'); }"));
 }
 runTest();
