@@ -32,7 +32,7 @@ function throwUndefinedException() {
 }
 
 function throwStringException() {
-  throw "PASSED"
+  throw new Error("PASSED")
 }
 
 function test(func) {
