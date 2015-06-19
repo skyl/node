@@ -40,7 +40,7 @@ promise.then(function(localResult) {  // fulfilled - continue
   testPassed('fulfilled');
   result = localResult;
   shouldBeEqualToString('result', 'hello2');
-  throw 'error';
+  throw new Error('error');
 }, function() {
   testFailed('rejected');
 }).then(function() {  // rejected - throw an exception
@@ -49,7 +49,7 @@ promise.then(function(localResult) {  // fulfilled - continue
   testPassed('rejected');
   result = localResult;
   shouldBeEqualToString('result', 'error');
-  throw 'error2';
+  throw new Error('error2');
 }).then() // pass through
 .then(function() {  // rejected - recover
   testFailed('fulfilled');
