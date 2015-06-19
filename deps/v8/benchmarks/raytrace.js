@@ -257,7 +257,7 @@ Flog.RayTracer.Vector.prototype = {
     },
 
     subtract : function(v, w) {
-        if(!w || !v) throw 'Vectors must be defined [' + v + ',' + w + ']';
+        if(!w || !v) throw new Error('Vectors must be defined [' + v + ',' + w + ']');
         return new Flog.RayTracer.Vector(v.x - w.x, v.y - w.y, v.z - w.z);
     },
 
