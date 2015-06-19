@@ -36,14 +36,14 @@ var result;
 function runTest() {
     var test = "outer scope";
     with({test:"inner scope"})
-       (function () { try { throw ""; } finally { result = test; shouldBe("result", '"inner scope"'); return;}})()
+       (function () { try { throw new Error(""; } finally { result = test; shouldBe("result", '"inner scope"')); return;}})()
 }
 runTest();
 
 try{
 (function() {
     try {
-        throw "";
+        throw new Error("");
     } catch(y) {
         throw (function(){});
     } finally {
