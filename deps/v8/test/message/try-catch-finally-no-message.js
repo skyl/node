@@ -27,9 +27,9 @@
 
 function f() {
   try {
-    throw "foo";
+    throw new Error("foo");
   } catch (e) {
-    throw "bar";
+    throw new Error("bar");
   } finally {
     return 4;
   }
@@ -38,9 +38,9 @@ function f() {
 function g() {
   while (true) {
     try {
-      throw "foo";
+      throw new Error("foo");
     } catch (e) {
-      throw "bar";
+      throw new Error("bar");
     } finally {
       break;
     }
