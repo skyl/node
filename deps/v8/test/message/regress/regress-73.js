@@ -26,8 +26,8 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 try {
-  throw 'a';
+  throw new Error('a');
 } catch (e) {
-  throw 'b';
+  throw new Error('b');
   print('c');
 }
