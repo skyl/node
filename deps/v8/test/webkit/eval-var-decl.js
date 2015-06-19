@@ -40,7 +40,7 @@ shouldBeFalse("secondEvalResult");
 
 var thirdEvalResult = false;
 try {
-    thirdEvalResult = (function(){ var x=false; try { throw ""; } catch (e) { eval("var x = true;"); } return x; })();
+    thirdEvalResult = (function(){ var x=false; try { throw new Error(""; } catch (e) { eval("var x = true;")); } return x; })();
 } catch (e) {
     thirdEvalResult = "Threw exception!";
 }
