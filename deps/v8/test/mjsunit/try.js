@@ -44,7 +44,7 @@ for (var n in a) {
   assertEquals(1, c(function() { return 1; }));
   assertEquals('bar', c(function() { return 'bar'; }));
   assertEquals(1, c(function () { throw 1; }, function (x) { return x; }));
-  assertEquals('bar', c(function () { throw 'bar'; }, function (x) { return x; }));
+  assertEquals('bar', c(function () { throw new Error('bar'); }, function (x) { return x; }));
 }
 
 
@@ -58,7 +58,7 @@ assertEquals(2, f({}, 'foo', 2).foo);
 assertEquals(5, f({}, 'bar', 5).bar);
 
 function guard(f) { try { f(); } catch (o) { return o; } }
-assertEquals('baz', guard(function() { throw 'baz'; }));
+assertEquals('baz', guard(function() { throw new Error('baz'); }));
 assertEquals(2, (function() { try { throw {}; } catch(e) {} finally { return 2; } })());
 assertEquals(1, guard(function() { try { throw 1; } finally { } }));
 assertEquals(2, guard(function() { try { throw 2; } finally { var x = 12; } }));
