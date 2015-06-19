@@ -32,7 +32,7 @@ var server = http.createServer(function (req, res) {
   if (command == "bytes") {
     var n = parseInt(arg, 10)
     if (n <= 0)
-      throw "bytes called with n <= 0"
+      throw new Error("bytes called with n <= 0")
     if (stored[n] === undefined) {
       stored[n] = "";
       for (var i = 0; i < n; i++) {
