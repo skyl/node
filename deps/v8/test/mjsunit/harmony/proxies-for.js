@@ -144,25 +144,25 @@ function TestForInThrow2(create, handler) {
 }
 
 TestForInThrow({
-  enumerate: function() { throw "myexn" }
+  enumerate: function() { throw new Error("myexn") }
 })
 
 TestForInThrow({
   enumerate: function() { return this.enumerate2() },
-  enumerate2: function() { throw "myexn" }
+  enumerate2: function() { throw new Error("myexn") }
 })
 
 TestForInThrow({
-  getPropertyNames: function() { throw "myexn" }
+  getPropertyNames: function() { throw new Error("myexn") }
 })
 
 TestForInThrow({
   getPropertyNames: function() { return ["a"] },
-  getPropertyDescriptor: function() { throw "myexn" }
+  getPropertyDescriptor: function() { throw new Error("myexn") }
 })
 
 TestForInThrow(Proxy.create({
   get: function(pr, pk) {
-    return function() { throw "myexn" }
+    return function() { throw new Error("myexn") }
   }
 }))
