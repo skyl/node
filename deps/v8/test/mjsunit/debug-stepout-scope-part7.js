@@ -63,10 +63,10 @@ var bodies = [ "1",
                "q ",
                "q;",
                "q; ",
-               "try { throw 'stuff' } catch (e) { e = 1; }",
-               "try { throw 'stuff' } catch (e) { e = 1; } ",
-               "try { throw 'stuff' } catch (e) { e = 1; };",
-               "try { throw 'stuff' } catch (e) { e = 1; }; " ];
+               "try { throw new Error('stuff' } catch (e) { e = 1; }"),
+               "try { throw new Error('stuff' } catch (e) { e = 1; } "),
+               "try { throw new Error('stuff' } catch (e) { e = 1; };"),
+               "try { throw new Error('stuff' } catch (e) { e = 1; }; ") ];
 
 
 // Test global eval and function constructor.
