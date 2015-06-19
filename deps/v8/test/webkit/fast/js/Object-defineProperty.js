@@ -75,10 +75,10 @@ shouldThrow("Object.defineProperty({}, 'foo', {writable:true, get: function(){}}
 shouldThrow("Object.defineProperty({}, 'foo', {writable:true, set: function(){}})");
 shouldThrow("Object.defineProperty({}, 'foo', {get: null})");
 shouldThrow("Object.defineProperty({}, 'foo', {set: null})");
-function getter(){ throw "called getter"; }
-function getter1(){ throw "called getter1"; }
-function setter(){ throw "called setter"; }
-function setter1(){ throw "called setter1"; }
+function getter(){ throw new Error("called getter"); }
+function getter1(){ throw new Error("called getter1"); }
+function setter(){ throw new Error("called setter"); }
+function setter1(){ throw new Error("called setter1"); }
 shouldThrow("Object.defineProperty({}, 'foo', {set: setter}).foo='test'", "'called setter'");
 shouldThrow("Object.defineProperty(Object.defineProperty({}, 'foo', {set: setter}), 'foo', {set: setter1})");
 shouldThrow("Object.defineProperty(Object.defineProperty({}, 'foo', {set: setter}), 'foo', {get: getter1})");
