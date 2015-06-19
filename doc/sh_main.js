@@ -470,7 +470,7 @@ function sh_getXMLHttpRequest() {
   else if (window.XMLHttpRequest) {
     return new XMLHttpRequest();
   }
-  throw 'No XMLHttpRequest implementation available';
+  throw new Error('No XMLHttpRequest implementation available');
 }
 
 function sh_load(language, element, prefix, suffix) {
@@ -493,7 +493,7 @@ function sh_load(language, element, prefix, suffix) {
           }
         }
         else {
-          throw 'HTTP error: status ' + request.status;
+          throw new Error('HTTP error: status ') + request.status;
         }
       }
       finally {
@@ -533,7 +533,7 @@ function highlight(prefix, suffix, tag) {
           sh_load(language, element, prefix, suffix);
         }
         else {
-          throw 'Found <' + tag + '> element with class="' + htmlClass + '", but no such language exists';
+          throw new Error('Found <' + tag + '> element with class="' + htmlClass + '", but no such language exists');
         }
         break;
       }
