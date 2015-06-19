@@ -28,7 +28,7 @@
 // This regression includes a number of cases where we did not correctly
 // update a accessor property to a data property using Object.defineProperty.
 
-var obj = { get value() {}, set value (v) { throw "Error";} };
+var obj = { get value() {}, set value (v) { throw new Error("Error");} };
 assertDoesNotThrow(
     Object.defineProperty(obj, "value",
                           { value: 5, writable:true, configurable: true }));
