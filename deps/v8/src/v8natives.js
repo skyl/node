@@ -572,7 +572,7 @@ SetUpLockedPrototype(PropertyDescriptor, $Array(
 // see the runtime.cc file.
 function ConvertDescriptorArrayToDescriptor(desc_array) {
   if (desc_array === false) {
-    throw 'Internal error: invalid desc_array';
+    throw new Error('Internal error: invalid desc_array');
   }
 
   if (IS_UNDEFINED(desc_array)) {
