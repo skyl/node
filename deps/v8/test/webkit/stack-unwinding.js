@@ -44,7 +44,7 @@ function hostCallsUser(array) {
 }
 
 function throwException() {
-    throw "Exception thrown";
+    throw new Error("Exception thrown");
 }
 
 function hostAndException() {
