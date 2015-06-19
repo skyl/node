@@ -76,7 +76,7 @@ debug("");
 
 debug("4.0 Exception Test");
 function isBigEnoughAndException(element, index, array) {
-    if(index==1) throw "exception from function";
+    if(index==1) throw new Error("exception from function");
     return (element >= 10);
 }
 shouldThrow("[12, 5, 8, 130, 44].every(isBigEnoughAndException)", '"exception from function"');
