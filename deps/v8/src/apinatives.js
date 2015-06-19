@@ -42,7 +42,7 @@ function Instantiate(data, name) {
       }
       return result;
     default:
-      throw 'Unknown API tag <' + tag + '>';
+      throw new Error('Unknown API tag <' + tag + '>');
   }
 }
 
@@ -109,7 +109,7 @@ function ConfigureTemplateInstance(obj, data) {
         var attribute = properties[i + 4];
         %DefineApiAccessorProperty(obj, name, getter, setter, attribute);
       } else {
-        throw "Bad properties array";
+        throw new Error("Bad properties array");
       }
       i += length + 1;
     }
