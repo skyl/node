@@ -29,12 +29,12 @@
 
 // Test inlined functions contain throw.
 function doThrow() {
-  throw "uha";
+  throw new Error("uha");
 }
 
 function f(x) {
   if (x == 42) throw doThrow();
-  if (x == 43) throw "wow";
+  if (x == 43) throw new Error("wow");
   return x == 0;
 }
 
