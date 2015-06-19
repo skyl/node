@@ -26,7 +26,7 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 try {
-  throw "foo";
+  throw new Error("foo");
 } finally {
-  throw "bar";
+  throw new Error("bar");
 }
