@@ -2345,7 +2345,7 @@ DebugCommandProcessor.prototype.changeLiveRequest_ = function(
   var change_log = new Array();
 
   if (!IS_STRING(request.arguments.new_source)) {
-    throw "new_source argument expected";
+    throw new Error("new_source argument expected");
   }
 
   var new_source = request.arguments.new_source;
