@@ -430,9 +430,9 @@ Debug.LiveEdit = new function() {
   function Assert(condition, message) {
     if (!condition) {
       if (message) {
-        throw "Assert " + message;
+        throw new Error("Assert ") + message;
       } else {
-        throw "Assert";
+        throw new Error("Assert");
       }
     }
   }
