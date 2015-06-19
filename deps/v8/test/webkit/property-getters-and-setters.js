@@ -67,7 +67,7 @@ shouldThrow("o5.__defineGetter__('a', null)");
 shouldThrow("o5.__defineGetter__('a', o5)");
 
 debug("setters and getters with exceptions");
-var o6 = { get x() { throw 'Exception in get'}, set x(f) { throw 'Exception in set'}}
+var o6 = { get x() { throw new Error('Exception in get'}, set x(f) { throw 'Exception in set')}}
 var x = 0;
 var numExceptions = 0;
 shouldThrow("x = o6.x");
