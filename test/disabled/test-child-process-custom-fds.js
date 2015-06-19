@@ -103,12 +103,12 @@ function test3(next) {
     actualData += data;
   });
   filter.on('exit', function(code) {
-    if (code) throw 'Return code was ' + code;
+    if (code) throw new Error('Return code was ') + code;
     assert.equal(actualData, 'hella warld\n');
     console.log('  Talked to another process successfully');
   });
   echo.on('exit', function(code) {
-    if (code) throw 'Return code was ' + code;
+    if (code) throw new Error('Return code was ') + code;
     filter.stdin.end();
     fs.unlinkSync(helloPath);
   });
