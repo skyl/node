@@ -35,7 +35,7 @@ try {
 
 try {
     try {
-        throw "2:thingy";
+        throw new Error("2:thingy");
     } finally {
         events.push("2:finally");
     }
@@ -44,7 +44,7 @@ try {
 }
 
 try {
-    throw "3:thingy";
+    throw new Error("3:thingy");
 } catch (e) {
     events.push(e);
 } finally {
@@ -53,12 +53,12 @@ try {
 
 try {
     try {
-        throw "4:thingy";
+        throw new Error("4:thingy");
     } catch (e) {
         events.push(e);
     } finally {
         events.push("4:finally");
-        throw "4:another thingy";
+        throw new Error("4:another thingy");
     }
 } catch (e) {
     events.push(e);
@@ -70,7 +70,7 @@ try {
             continue;
         } finally {
             events.push("5:hi");
-            throw "5:wat";
+            throw new Error("5:wat");
         }
     }
 } catch (e) {
