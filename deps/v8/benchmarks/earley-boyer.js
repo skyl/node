@@ -2131,7 +2131,7 @@ function sc_ErrorInputPort() {
 };
 sc_ErrorInputPort.prototype = new sc_InputPort();
 sc_ErrorInputPort.prototype.getNextChar = function() {
-    throw "can't read from error-port.";
+    throw new Error("can't read from error-port.");
 };
 sc_ErrorInputPort.prototype.isCharReady = function() {
     return false;
@@ -2410,7 +2410,7 @@ sc_Tokenizer.prototype.nextToken = function() {
     default:
 	if (isIdOrNumberChar(curChar))
 	    return readIdOrNumber(curChar);
-	throw "unexpected character: " + curChar;
+	throw new Error("unexpected character: ") + curChar;
     }
 };
 
@@ -2438,18 +2438,18 @@ sc_Reader.prototype.read = function() {
 		    tokenizer.readToken(); // consume token
 		    return sc_reverseBang(res);
 		} else
-		    throw "closing par doesn't match: " + listBeginType
+		    throw new Error("closing par doesn't match: ") + listBeginType
 			+ " " + listEndType;
 
 	    case 0/*EOF*/:
-		throw "unexpected end of file";
+		throw new Error("unexpected end of file");
 
 	    case 10/*DOT*/:
 		tokenizer.readToken(); // consume token
 		var cdr = this.read();
 		var par = tokenizer.readToken();
 		if (!matchesPeer(listBeginType, par.type))
-		    throw "closing par doesn't match: " + listBeginType
+		    throw new Error("closing par doesn't match: ") + listBeginType
 			+ " " + par.type;
 		else
 		    return sc_reverseAppendBang(res, cdr);
@@ -2489,7 +2489,7 @@ sc_Reader.prototype.read = function() {
 	if (nb in this.backref)
 	    return this.backref[nb];
 	else
-	    throw "bad reference: " + nb;
+	    throw new Error("bad reference: ") + nb;
     };
 
     var tokenizer = this.tokenizer;
@@ -2526,7 +2526,7 @@ sc_Reader.prototype.read = function() {
     case 17/*UNSPECIFIED*/:
 	return token.val;
     default:
-	throw "unexpected token " + token.type + " " + token.val;
+	throw new Error("unexpected token " + token.type + " ") + token.val;
     }
 };
 
@@ -2592,32 +2592,32 @@ function sc_currentInputPort() {
 /* ------------ file operations are not supported -----------*/
 /*** META ((export #t)) */
 function sc_callWithInputFile(s, proc) {
-    throw "can't open " + s;
+    throw new Error("can't open ") + s;
 }
 
 /*** META ((export #t)) */
 function sc_callWithOutputFile(s, proc) {
-    throw "can't open " + s;
+    throw new Error("can't open ") + s;
 }
 
 /*** META ((export #t)) */
 function sc_withInputFromFile(s, thunk) {
-    throw "can't open " + s;
+    throw new Error("can't open ") + s;
 }
 
 /*** META ((export #t)) */
 function sc_withOutputToFile(s, thunk) {
-    throw "can't open " + s;
+    throw new Error("can't open ") + s;
 }
 
 /*** META ((export #t)) */
 function sc_openInputFile(s) {
-    throw "can't open " + s;
+    throw new Error("can't open ") + s;
 }
 
 /*** META ((export #t)) */
 function sc_openOutputFile(s) {
-    throw "can't open " + s;
+    throw new Error("can't open ") + s;
 }
 
 /* ----------------------------------------------------------------------------*/
@@ -2728,7 +2728,7 @@ function sc_ErrorOutputPort() {
 }
 sc_ErrorOutputPort.prototype = new sc_OutputPort();
 sc_ErrorOutputPort.prototype.appendJSString = function(s) {
-    throw "don't write on ErrorPort!";
+    throw new Error("don't write on ErrorPort!");
 }
 sc_ErrorOutputPort.prototype.close = function() {
     /* do nothing */
